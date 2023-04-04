@@ -2,15 +2,6 @@
 <html lang="en">
 
 <head>
-<script type="text/javascript">
-        function preventBack() {
-            window.history.forward(); 
-        }
-          
-        setTimeout("preventBack()", 0);
-          
-        window.onunload = function () { null };
-    </script>
     <meta charset="utf-8">
      <title>iDESIGN - Interior Design HTML Template</title> 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -94,8 +85,7 @@
                         <a href="service.html" class="nav-item nav-link">Service</a>
                         <a href="project.html" class="nav-item nav-link">Project</a>
                         <a href="reg.php" class="nav-item nav-link">Booking</a>
-                        <a href="category.php" class="nav-item nav-link">Furnitures</a>
-                        <a href="logout.php" class="nav-item nav-link">Logout</a>
+                        <a href="view_product.php" class="nav-item nav-link">Furnitures</a>
                         
                         <!-- <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a> -->

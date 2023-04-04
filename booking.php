@@ -136,22 +136,7 @@ else{
   $typeid = "ALL";
 
 }
- $stu="SELECT * FROM tbl_brand WHERE brand_id='$typeid'";
-//  $ex_stu=mysqli_query($con,$stu);
-//  if($ex_stu)
-//  {
-//   if(mysqli_num_rows($ex_stu)>0)
-//   {
-//     $row_ans=mysqli_fetch_array($ex_stu);
-//     $adult=$row_ans['adult'];
-//     $children=$row_ans['children'];
-//     $_SESSION['adult']=$adult;
-//     $_SESSION['children']=$children;
-//     //echo "<script> alert('$adult'); </script>";
-//   }
-//  }
-//  else
-//  echo "error";
+ 
 ?>
  
 <div class="row1" >

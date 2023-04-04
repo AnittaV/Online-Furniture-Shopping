@@ -2,31 +2,22 @@
 session_start();
 include 'db.php';
 
-if (isset($_POST['submit'])) {
-    if (!empty($_POST['urnm']) && !empty($_POST['pswd'])) {
-        $log_username = $_POST['urnm'];
-        $log_password = $_POST['pswd'];
-        $log_check = "SELECT * FROM tbl_userreg WHERE Username='" . $log_username . "' AND password='" . $log_password . "'";
-        $log_check_sql = mysqli_query($con, $log_check);
-
-        if (mysqli_num_rows($log_check_sql) === 1) {
-            $row = mysqli_fetch_assoc($log_check_sql);
-            $_SESSION['Username'] = $row['username'];
-
-            if ($log_username === $row["username"] && $log_password === $row["password"]) {
-                if ($row["role"] == 1) {
-                    $_SESSION['Username'] = $log_username;
-                    header('Location:admin/index.php');
-                } else {
-                    header('Location:userhome.php');
-                }
-            }
-        } else {
-            $errors['A'] = "Username or password is incorrect.";
-            $display['D'] = "block";
-        }
+$pass_value = $_SESSION['Email'];
+if(isset($_POST['submit_reset'])){
+    $pass = $_POST['pass'];
+    $cpass = $_POST['cpass'];
+    if($pass != $cpass){
+        echo '<script> alert ("Password doesnot match");</script>';
+	    echo'<script>window.location.href="update_password.php";</script>';
+    }
+    else{
+        $insert = "UPDATE `tbl_userreg` SET `password`='$cpass' WHERE `email`='$pass_value'";
+        mysqli_query($con,$insert);
+        echo '<script> alert ("Password updated successfully");</script>';
+	    echo'<script>window.location.href="index.php";</script>';
     }
 }
+?>
 ?>
 
 <head>
@@ -64,21 +55,18 @@ if (isset($_POST['submit'])) {
     <fieldset>
         <form method="POST" name="myform" style="margin-top:10%;"><br>
             <center>
-                <h1>Login</h1>
+                <h1>Update Password</h1>
             </center><br>
             <center>
                 <div id="message1"></div>
-                <input type="text" id="nm" name="urnm" class="text" placeholder="USERNAME" autocomplete="off" onkeyup="return validate();"><br>
+                <input type="password" id="pass" class="text" name="pass" placeholder="New Password" autocomplete="off" onkeyup="return validatepass();"><br><br>
                 <span id="urn" style="color:white"></span>
                 <br>
                 <div id="message2"></div>
-                <input type="password" id="ps" class="text" name="pswd" placeholder="PASSWORD" autocomplete="off" onkeyup="return validatepass();"><br><br>
+                <input type="password" id="cpass" class="text" name="cpass" placeholder="Confirm Password" autocomplete="off" onkeyup="return validatepass();"><br><br>
                 <span id="ords" style="color:white"></span><br>
-                <br><p id="paragraph1" style="margin-top: -58px;">If forgot password <a href="forgot.php">CLICK HERE</a></p>
-                <br>
-                <center><input type="submit" name="submit" value="LOGIN" class="button"></center><br>
+                <center><input type="submit" name="submit_reset" value="Submit" class="button"></center><br>
                 <br><br>
-                <p id="paragraph1" style="margin-top: -58px;">If not registered <a href="signup.php">CLICK HERE</a></p>
             </center>
         </form>
     </fieldset>
