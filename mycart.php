@@ -61,65 +61,45 @@
 											<th scope="col">Sr.No.</th>
 											<th scope="col">ProductName</th>
 											<th scope="col">Price</th>
-											<th scope="col">Quantity</th>
-											<th scope="col">Total</th>
-											<th scope="col">Action</th>
+											
 										</tr>
 									</thead>
 
 									<tbody class="text-center">
 										<?php
-											$all_total=0;
+											
 											$sr=0;
-											include '../dbconn.php';
-											$login_id= $_SESSION['login_id'];
-											$mycart_record_res= mysqli_query($conn,"SELECT * from tbl_cart WHERE uid=$login_id");
-											if(mysqli_num_rows($mycart_record_res) > 0)
-											{
-												foreach($mycart_record_res as $row){
+											include '../db.php';
+											session_start();
+											$login_id=$_SESSION['Username'];
+											$mycart_record_res= mysqli_query($con,"SELECT * from tbl_cart WHERE username='$login_id' and status='0'");
+											
+												 while($pred_details_res= mysqli_fetch_assoc($mycart_record_res)){
 													$sr++;
-													$pid= $row['product_id'];
-													$prod_sql= mysqli_query($conn,"SELECT * from tbl_products WHERE product_id=$pid");
-													if(mysqli_num_rows($prod_sql) == 1){
-														$pred_details_res= mysqli_fetch_array($prod_sql);
-														$each_total= $row["quantity"]*$pred_details_res["prod_price"];
-														$all_total+=$each_total;
+												// 	$pid= $row['product_id'];
+												// 	$prod_sql= mysqli_query($conn,"SELECT * from tbl_products WHERE product_id=$pid");
+													//if(mysqli_num_rows($mycart_record_res) == 1){
+													//$pred_details_res= mysqli_fetch_array($mycart_record_res);
+												// 		$each_total= $row["quantity"]*$pred_details_res["prod_price"];
+												// 		$all_total+=$each_total;
 													
 														echo"
 															<tr>
 																<td>$sr</td>
 																
 																
-																<td><p id='prod_name'>".$pred_details_res["prod_name"]."</p></td>
-																<td>".$pred_details_res["prod_price"]."</td>
+																<td><p id='prod_name'>".$pred_details_res["pname"]."</p></td>
+																<td>".$pred_details_res["price"]."</td>
 
 																
-																<td>
-																	<form action='manage_cart.php' method = 'POST'>
-																		<input class='text-center' type='number'  name='pquantity' value='".$row["quantity"]."' min='1' max='10'>
-																		<input type='text' name='pname' value=".$row["product_id"]." hidden>
-																		<button name='Update_Item'  id='cartupdate' class='btn btn-sm btn-outline-success '>UPDATE</button>
-																	</form>
-																</td>
-																<td class='itotal'>".$each_total."</td>
 																
-																<td>
-																	<form action='manage_cart.php' method='POST'>
-																		<input type='text' name='pname' value=".$row["product_id"]." hidden>
-																		<button name='Remove_Item' class='btn btn-sm btn-outline-danger'>REMOVE</button>
-																	</form>
-																
-																</td>
-															
 															</tr>
 														";
 													}
-													else{
-
-													}
-												}
+													
 												
-											}
+												
+											// }
 										?>
 										
 									</tbody>
@@ -130,7 +110,7 @@
 								<div class="col-lg-4" id="mycart-total">
 									<div class="border bg-light rounded p-4">
 										<h3>Total:</h3>
-										<h5 class="text-right"><?php echo $all_total; ?></h5>
+										<h5 class="text-right"><?php //echo $all_total; ?></h5>
 										<br>
 										<form>
 											<div class="form-check">

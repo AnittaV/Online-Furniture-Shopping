@@ -1,5 +1,5 @@
 <?php
-  include '../cartitemscount.php';
+  include '../db.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,12 +26,12 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
            
-          <a class="nav-link active" aria-current="page" href="../index.php">MOBISTORE</a>
+          <a class="nav-link active" aria-current="page" href="../userhome.php">FURNITURE STORE</a>
           
         </li>
         
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
+          <a class="nav-link active" aria-current="page" href="../userhome.php">Home</a>
         </li> 
         <!-- <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="../login.php">Login</a>
@@ -48,7 +48,7 @@
         // }
         $count=0;
         ?>
-        <a href="mycart.php" class="btn btn-outline-success">My Cart(<?php echo $cart_itemcount;?>)</a>
+        <a href="mycart.php" class="btn btn-outline-success">My Cart()</a>
      </div>
     </div>
   </div>
