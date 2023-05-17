@@ -351,7 +351,7 @@
         `                     <img class="img-fluid" src="img/portfolio-3.jpg" alt="">
                         </div>
                         <div class="portfolio-text bg-secondary d-flex flex-column align-items-center justify-content-center">
-                            <h4 class="text-white mb-4">Online Furnitur Shopping</h4>
+                            <h4 class="text-white mb-4">Online Furniture Shopping</h4>
                             <div class="d-flex align-items-center justify-content-center">
                                 <a class="btn btn-outline-primary m-1" href="">
                                     <i class="fa fa-link"></i>
