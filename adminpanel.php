@@ -162,6 +162,7 @@ if (!isset($_SESSION['Username'])) {
             <h5>Product image</h5>
             <label for="" class="form-label"></label>
             <input type="file" class="form-control" name="img" id="e" aria-describedby="helpId" autocomplete="off">
+            <!-- <button type="button">Add cart</button> -->
             <div id="message5"></div>
           </div>
           <br>
